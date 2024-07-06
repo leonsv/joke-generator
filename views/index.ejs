@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Joke Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+  <div class="bg-dark text-secondary px-4 text-center" id="bodydiv">
+    <div class="py-5">
+      <h1 class="display-5 fw-bold text-white">LET'S HEAR A JOKE</h1>
+      <%  if(jokeobj["error"]==false){ %>
+        <p class="fs-6">Category: <%=jokeobj["category"] %></p>
+      <% } %>
+      <div class="col-lg-6 mx-auto">
+        <div id="joketext">
+
+          <%  if(jokeobj["error"]==true){ %>
+            <p class="fs-5">Sorry, no matching joke found. Try something else!</p>
+          <% } else{ %>
+            
+            <% if(jokeobj["type"]=="single"){ %>
+                        <p class="fs-5"><%=jokeobj["joke"] %></p>
+                      <% } else{ %>
+                        <p class="fs-5 mb-4"><%=jokeobj["setup"]  %></p>
+                        <p class="fs-5 mb-0"><%=jokeobj["delivery"]  %></p>
+                      <% } %>
+          <% } %>          
+        </div>
+
+        <!-- <h6 class="display-6 fw-bold text-white py-5">Select Any</h1> -->
+        <p class="fs-6">Select Any</p>
+        
+        <form action="/" method="POST" class="buttons">
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" >
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Programming" name="choice">Programming</button>
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Miscellaneous" name="choice">Miscellaneous</button>
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Dark" name="choice">Dark</button>
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Pun" name="choice">Pun</button>
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Spooky" name="choice">Spooky</button>
+            <button type="submit" class="btn btn-outline-light btn-lg px-3 fs-6" value="Christmas" name="choice">Christmas</button>
+          </div>
+        </form>
+          
+      </div>     
+
+      <div class="col-md-5 col-lg-4 order-md-last input-container">       
+        <form action="/" method="POST" class="card p-1">
+          <div class="input-group">
+            <input type="text" class="form-control" name="filterword" placeholder="Filter by word:">
+            <button type="submit" class="btn btn-secondary">Get Joke</button>
+          </div>
+        </form>
+      </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
+</body>
+
+</html>
